@@ -1,7 +1,7 @@
 # Aplicativo de Lista de Compras em Java
 
 ## Descrição
-Este é um aplicativo de lista de compras simples desenvolvido em Java. Ele permite que os usuários criem, atualizem, excluam e visualizem itens de uma lista de compras.
+Este é um aplicativo de lista de compras simples desenvolvido em Java. Ele permite que os usuários criem, atualizem, excluam e visualizem itens de uma lista de compras. Cada item da lista de compras é um objeto com atributos como nome, quantidade, preço, etc. O projeto utiliza conceitos de programação orientada a objetos.
 
 ## Funcionalidades
 1. Adicionar item à lista
