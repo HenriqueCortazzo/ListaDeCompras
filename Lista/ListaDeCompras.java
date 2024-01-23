@@ -70,11 +70,25 @@ public class ListaDeCompras {
     }
 
     private void excluirItem() {
-
+        boolean tudoOk = false;
+        do {
+            String nomeProduto = JOptionPane.showInputDialog(null, "Digite o nome do produto que deseja excluir: ");
+            if (!lista.isEmpty()) {
+                for (String receptora : lista) {
+                    if (receptora.equalsIgnoreCase(nomeProduto)) {
+                        tudoOk = true;
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Erro! Produto não encotrado");
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "ERRO ! Não há produtos cadastrados");
+                paginaInicial();
+            }
+        } while (!tudoOk);
     }
 
     private void visualizarlista() {
-
     }
 
     private void editarItem() {
