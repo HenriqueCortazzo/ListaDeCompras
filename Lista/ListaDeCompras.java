@@ -45,8 +45,23 @@ public class ListaDeCompras {
             }
         } while (!opcaoEscolhida);
     }
-    private void adicionarItem() {
 
+    private void adicionarItem() {
+        boolean tudoOk = false;
+        do {
+            String nomeProduto = JOptionPane.showInputDialog(null, "Digite o nome do produto: ");
+            String qtdItem = JOptionPane.showInputDialog(null, "Quantidade: ");
+            String valorProduto = JOptionPane.showInputDialog(null, "Valor: ");
+            double valorProd = Double.parseDouble(valorProduto);
+            int qtd = Integer.parseInt(qtdItem);
+            double valorResultante = qtd * valorProd;
+            if (!nomeProduto.equalsIgnoreCase("null") && !qtdItem.equalsIgnoreCase("null") && !valorProduto.equalsIgnoreCase("null")) {
+                JOptionPane.showMessageDialog(null, "Produto listado com sucesso.");
+                tudoOk = true;
+            }
+
+        } while (!tudoOk);
+        paginaInicial();
     }
 
     private void excluirItem() {
