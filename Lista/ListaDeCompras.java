@@ -4,8 +4,12 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 public class ListaDeCompras {
-    private ArrayList<String> lista = new ArrayList<>();
+    private final ArrayList<String> lista = new ArrayList<>();
     private ArrayList<String> listaBackup = new ArrayList<>();
+
+    private double valorProd;
+    private int qtd;
+    double valorResultante;
 
     public ListaDeCompras() {
         paginaInicial();
@@ -52,10 +56,11 @@ public class ListaDeCompras {
             String nomeProduto = JOptionPane.showInputDialog(null, "Digite o nome do produto: ");
             String qtdItem = JOptionPane.showInputDialog(null, "Quantidade: ");
             String valorProduto = JOptionPane.showInputDialog(null, "Valor: ");
-            double valorProd = Double.parseDouble(valorProduto);
-            int qtd = Integer.parseInt(qtdItem);
-            double valorResultante = qtd * valorProd;
+            valorProd = Double.parseDouble(valorProduto);
+            qtd = Integer.parseInt(qtdItem);
+            valorResultante = qtd * valorProd;
             if (!nomeProduto.equalsIgnoreCase("null") && !qtdItem.equalsIgnoreCase("null") && !valorProduto.equalsIgnoreCase("null")) {
+                lista.add(nomeProduto);
                 JOptionPane.showMessageDialog(null, "Produto listado com sucesso.");
                 tudoOk = true;
             }
