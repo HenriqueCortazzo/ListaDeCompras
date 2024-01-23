@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 public class ListaDeCompras {
-    private final ArrayList<String> lista = new ArrayList<>();
+    private ArrayList<String> lista = new ArrayList<>();
     private ArrayList<String> listaBackup = new ArrayList<>();
 
     private double valorProd;
@@ -21,7 +21,7 @@ public class ListaDeCompras {
         do {
             switch (opcao) {
                 case "1":
-                    adicionarItem();
+                     adicionarItem();
                     break;
                 case "2":
                     editarItem();
@@ -74,9 +74,12 @@ public class ListaDeCompras {
         do {
             String nomeProduto = JOptionPane.showInputDialog(null, "Digite o nome do produto que deseja excluir: ");
             if (!lista.isEmpty()) {
-                for (String receptora : lista) {
-                    if (receptora.equalsIgnoreCase(nomeProduto)) {
+                for (int i = 0; i < lista.size(); i++) {
+                    if (lista.get(i).equalsIgnoreCase(nomeProduto)) {
+                        lista.remove(i);
+                        listaBackup.add(String.valueOf(i));
                         tudoOk = true;
+                        break;
                     } else {
                         JOptionPane.showMessageDialog(null, "Erro! Produto não encotrado");
                     }
