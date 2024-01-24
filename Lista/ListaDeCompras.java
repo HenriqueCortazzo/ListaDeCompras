@@ -53,17 +53,22 @@ public class ListaDeCompras {
     private void adicionarItem() {
         boolean tudoOk = false;
         do {
-            String nomeProduto = JOptionPane.showInputDialog(null, "Digite o nome do produto: ");
-            String qtdItem = JOptionPane.showInputDialog(null, "Quantidade: ");
-            String valorProduto = JOptionPane.showInputDialog(null, "Valor: ");
-            valorProd = Double.parseDouble(valorProduto);
-            qtd = Integer.parseInt(qtdItem);
-            valorResultante = qtd * valorProd;
-            if (!nomeProduto.equalsIgnoreCase("null") && !qtdItem.equalsIgnoreCase("null") && !valorProduto.equalsIgnoreCase("null")) {
-                lista.add(nomeProduto);
-                JOptionPane.showMessageDialog(null, "Produto listado com sucesso.");
-                tudoOk = true;
+            if (!lista.isEmpty()) {
+                valorProd = 0;
+                valorResultante = 0;
+                qtd = 0;
             }
+                String nomeProduto = JOptionPane.showInputDialog(null, "Digite o nome do produto: ");
+                String qtdItem = JOptionPane.showInputDialog(null, "Quantidade: ");
+                String valorProduto = JOptionPane.showInputDialog(null, "Valor: ");
+                valorProd = Double.parseDouble(valorProduto);
+                qtd = Integer.parseInt(qtdItem);
+                valorResultante = qtd * valorProd;
+                if (!nomeProduto.equalsIgnoreCase("null") && !qtdItem.equalsIgnoreCase("null") && !valorProduto.equalsIgnoreCase("null")) {
+                    lista.add(nomeProduto);
+                    JOptionPane.showMessageDialog(null, "Produto listado com sucesso.");
+                    tudoOk = true;
+                }
 
         } while (!tudoOk);
         paginaInicial();
@@ -93,8 +98,11 @@ public class ListaDeCompras {
 
     private void visualizarlista() {
         String resultado = "PRODUTO   QNTD   VALOR UN   VALOR TOTAL\n";
+        double valorUnExibir = valorProd;
+        int quant = qtd;
+        double valorTotalExibir = valorUnExibir * quant;
         for (String produto : lista) {
-            resultado += String.format("%-18s   %-9d   %-16.2f   %-15.2f\n", produto, 1, valorProd, valorResultante);
+            resultado += String.format("%-18s   %-9d   %-16.2f   %-15.2f\n", produto, quant, valorUnExibir, valorTotalExibir);
         }
         JOptionPane.showMessageDialog(null, resultado);
         paginaInicial();
