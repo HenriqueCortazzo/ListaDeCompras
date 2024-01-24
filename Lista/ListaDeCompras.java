@@ -21,7 +21,7 @@ public class ListaDeCompras {
         do {
             switch (opcao) {
                 case "1":
-                     adicionarItem();
+                    adicionarItem();
                     break;
                 case "2":
                     editarItem();
@@ -92,6 +92,12 @@ public class ListaDeCompras {
     }
 
     private void visualizarlista() {
+        String resultado = "PRODUTO   QNTD   VALOR UN   VALOR TOTAL\n";
+        for (String produto : lista) {
+            resultado += String.format("%-18s   %-9d   %-16.2f   %-15.2f\n", produto, 1, valorProd, valorResultante);
+        }
+        JOptionPane.showMessageDialog(null, resultado);
+        paginaInicial();
     }
 
     private void editarItem() {
