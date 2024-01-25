@@ -4,15 +4,11 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 public class ListaDeCompras {
-    private ArrayList<String> lista = new ArrayList<>();
-    private ArrayList<Integer> quant = new ArrayList<>();
-    private ArrayList<Double> prod = new ArrayList<>();
-    private ArrayList<Double> vTotal = new ArrayList<>();
+    private final ArrayList<String> lista = new ArrayList<>();
+    private final ArrayList<Integer> quant = new ArrayList<>();
+    private final ArrayList<Double> prod = new ArrayList<>();
+    private final ArrayList<Double> vTotal = new ArrayList<>();
     private ArrayList<String> listaBackup = new ArrayList<>();
-
-    private double valorProd;
-    private int qtd;
-    double valorResultante;
 
     public ListaDeCompras() {
         paginaInicial();
@@ -56,17 +52,14 @@ public class ListaDeCompras {
     private void adicionarItem() {
         boolean tudoOk = false;
         do {
-            if (!lista.isEmpty()) {
-                valorProd = 0;
-                valorResultante = 0;
-                qtd = 0;
-            }
+            double valorProd;
+            int qtd;
             String nomeProduto = JOptionPane.showInputDialog(null, "Digite o nome do produto: ");
             String qtdItem = JOptionPane.showInputDialog(null, "Quantidade: ");
             String valorProduto = JOptionPane.showInputDialog(null, "Valor: ");
             valorProd = Double.parseDouble(valorProduto);
             qtd = Integer.parseInt(qtdItem);
-            valorResultante = qtd * valorProd;
+            double valorResultante = qtd * valorProd;
             if (!nomeProduto.equalsIgnoreCase("null") && !qtdItem.equalsIgnoreCase("null") && !valorProduto.equalsIgnoreCase("null")) {
                 lista.add(nomeProduto);
                 quant.add(Integer.valueOf(qtdItem));
@@ -104,8 +97,8 @@ public class ListaDeCompras {
 
     private void visualizarlista() {
         String resultado = "PRODUTO   QNTD   VALOR UN   VALOR TOTAL\n";
-        for (int i = 0; i < lista.size() ; i++) {
-            resultado += String.format("%-18s   %-9d   %-16.2f   %-15.2f\n",lista.get(i), quant.get(i), prod.get(i), vTotal.get(i));
+        for (int i = 0; i < lista.size(); i++) {
+            resultado += String.format("%-18s   %-9d   %-16.2f   %-15.2f\n", lista.get(i), quant.get(i), prod.get(i), vTotal.get(i));
         }
         JOptionPane.showMessageDialog(null, resultado);
         paginaInicial();
