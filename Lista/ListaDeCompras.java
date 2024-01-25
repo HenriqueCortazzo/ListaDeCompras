@@ -5,7 +5,9 @@ import java.util.ArrayList;
 
 public class ListaDeCompras {
     private ArrayList<String> lista = new ArrayList<>();
-    private ArrayList<String> resultados = new ArrayList<>();
+    private ArrayList<Integer> quant = new ArrayList<>();
+    private ArrayList<Double> prod = new ArrayList<>();
+    private ArrayList<Double> vTotal = new ArrayList<>();
     private ArrayList<String> listaBackup = new ArrayList<>();
 
     private double valorProd;
@@ -67,6 +69,9 @@ public class ListaDeCompras {
             valorResultante = qtd * valorProd;
             if (!nomeProduto.equalsIgnoreCase("null") && !qtdItem.equalsIgnoreCase("null") && !valorProduto.equalsIgnoreCase("null")) {
                 lista.add(nomeProduto);
+                quant.add(Integer.valueOf(qtdItem));
+                prod.add(Double.valueOf(valorProduto));
+                vTotal.add(valorResultante);
                 JOptionPane.showMessageDialog(null, "Produto listado com sucesso.");
                 tudoOk = true;
             }
@@ -99,14 +104,10 @@ public class ListaDeCompras {
 
     private void visualizarlista() {
         String resultado = "PRODUTO   QNTD   VALOR UN   VALOR TOTAL\n";
-        for (String produto : lista) {
-            resultado += String.format("%-18s   %-9d   %-16.2f   %-15.2f\n", produto, qtd, valorProd, valorResultante);
-        }
-        if (!resultados.isEmpty()) {
-            JOptionPane.showMessageDialog(null, resultados);
+        for (int i = 0; i < lista.size() ; i++) {
+            resultado += String.format("%-18s   %-9d   %-16.2f   %-15.2f\n",lista.get(i), quant.get(i), prod.get(i), vTotal.get(i));
         }
         JOptionPane.showMessageDialog(null, resultado);
-        resultados.add(resultado);
         paginaInicial();
     }
 
