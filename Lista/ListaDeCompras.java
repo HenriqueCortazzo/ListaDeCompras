@@ -76,15 +76,15 @@ public class ListaDeCompras {
     private void excluirItem() {
         boolean tudoOk = false;
         do {
-            String nomeProduto = JOptionPane.showInputDialog(null, "Digite o nome do produto que deseja excluir: ");
             if (!lista.isEmpty()) {
+                String nomeProduto = JOptionPane.showInputDialog(null, "Digite o nome do produto que deseja excluir: ");
                 for (int i = 0; i < lista.size(); i++) {
                     if (lista.get(i).equalsIgnoreCase(nomeProduto)) {
                         lista.remove(i);
                         listaBackup.add(String.valueOf(i));
                         tudoOk = true;
                         JOptionPane.showMessageDialog(null, "Produto excluído com sucesso!");
-                       break;
+                        break;
                     }
                 }
                 paginaInicial();
@@ -96,12 +96,17 @@ public class ListaDeCompras {
     }
 
     private void visualizarlista() {
-        String resultado = "PRODUTO   QNTD   VALOR UN   VALOR TOTAL\n";
-        for (int i = 0; i < lista.size(); i++) {
-            resultado += String.format("%-18s   %-9d   %-16.2f   %-15.2f\n", lista.get(i).toUpperCase(), quant.get(i), prod.get(i), vTotal.get(i));
+        if (!lista.isEmpty()) {
+            String resultado = "PRODUTO   QNTD   VALOR UN   VALOR TOTAL\n";
+            for (int i = 0; i < lista.size(); i++) {
+                resultado += String.format("%-18s   %-9d   %-16.2f   %-15.2f\n", lista.get(i).toUpperCase(), quant.get(i), prod.get(i), vTotal.get(i));
+            }
+            JOptionPane.showMessageDialog(null, resultado);
+            paginaInicial();
+        }else{
+            JOptionPane.showMessageDialog(null, "ERRO ! Não há produtos cadastrados");
+            paginaInicial();
         }
-        JOptionPane.showMessageDialog(null, resultado);
-        paginaInicial();
     }
 
     private void editarItem() {
