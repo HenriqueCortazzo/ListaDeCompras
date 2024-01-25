@@ -83,11 +83,11 @@ public class ListaDeCompras {
                         lista.remove(i);
                         listaBackup.add(String.valueOf(i));
                         tudoOk = true;
-                        break;
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Erro! Produto não encotrado");
+                        JOptionPane.showMessageDialog(null, "Produto excluído com sucesso!");
+                       break;
                     }
                 }
+                paginaInicial();
             } else {
                 JOptionPane.showMessageDialog(null, "ERRO ! Não há produtos cadastrados");
                 paginaInicial();
@@ -98,7 +98,7 @@ public class ListaDeCompras {
     private void visualizarlista() {
         String resultado = "PRODUTO   QNTD   VALOR UN   VALOR TOTAL\n";
         for (int i = 0; i < lista.size(); i++) {
-            resultado += String.format("%-18s   %-9d   %-16.2f   %-15.2f\n", lista.get(i), quant.get(i), prod.get(i), vTotal.get(i));
+            resultado += String.format("%-18s   %-9d   %-16.2f   %-15.2f\n", lista.get(i).toUpperCase(), quant.get(i), prod.get(i), vTotal.get(i));
         }
         JOptionPane.showMessageDialog(null, resultado);
         paginaInicial();
