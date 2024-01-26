@@ -54,9 +54,15 @@ public class ListaDeCompras {
             double valorProd;
             int qtd;
             String nomeProduto = JOptionPane.showInputDialog(null, "Digite o nome do produto: ");
+            for (String s : lista) {
+                if (nomeProduto.equalsIgnoreCase(s)) {
+                    JOptionPane.showMessageDialog(null, "Esse produto já foi cadastrado.");
+                    paginaInicial();
+                }
+            }
             String qtdItem = JOptionPane.showInputDialog(null, "Quantidade: ");
             String valorProduto = JOptionPane.showInputDialog(null, "Valor: ");
-            double valorResultante = 0;
+            double valorResultante;
             if (!nomeProduto.isEmpty() && !qtdItem.isEmpty() && !valorProduto.isEmpty()) {
                 valorProd = Double.parseDouble(valorProduto);
                 qtd = Integer.parseInt(qtdItem);
