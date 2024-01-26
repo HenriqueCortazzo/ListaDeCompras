@@ -132,7 +132,7 @@ public class ListaDeCompras {
                             if (lista.get(i).equalsIgnoreCase(nomeProduto)) {
                                 String novoProduto = JOptionPane.showInputDialog(null, "Digite o novo nome do produto");
                                 lista.set(i, novoProduto);
-                                listaBackup.set(i,novoProduto);
+                                listaBackup.set(i, novoProduto);
                                 JOptionPane.showMessageDialog(null, "Produto editado com sucesso!");
                                 break;
                             }
@@ -185,6 +185,9 @@ public class ListaDeCompras {
     private void limparLista() {
         if (!lista.isEmpty()) {
             lista.clear();
+            quant.clear();
+            prod.clear();
+            vTotal.clear();
             JOptionPane.showMessageDialog(null, "Todos os itens foram excluídos com sucesso");
         } else JOptionPane.showMessageDialog(null, "ERRO ! Não há produtos cadastrados");
         paginaInicial();
@@ -195,8 +198,8 @@ public class ListaDeCompras {
             lista.addAll(listaBackup);
             quant.addAll(quantBackup);
             prod.addAll(prodBackup);
-            vTotal.addAll(prodBackup);
-            JOptionPane.showMessageDialog(null,"Todos os itens foram restuarados.");
+            vTotal.addAll(vTotalBackup);
+            JOptionPane.showMessageDialog(null, "Todos os itens foram restuarados.");
         } else JOptionPane.showMessageDialog(null, "ERRO ! Não há produtos cadastrados");
         paginaInicial();
     }
