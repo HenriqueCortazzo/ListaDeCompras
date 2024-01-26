@@ -15,7 +15,7 @@ public class ListaDeCompras {
     }
 
     private void paginaInicial() {
-        String opcao = JOptionPane.showInputDialog(null, "LISTA DE COMPRAS\n\n 1 - Adicionar item á lista \n 2 - Editar item da lista \n 3 - Excluir item da lista \n 4 - Visualizar itens da lista \n 5 - limpar itens da lista \n 6 - recuperar itens da lista  \n 7 - Fechar Sistema\n\n");
+        String opcao = JOptionPane.showInputDialog(null, "LISTA DE COMPRAS\n\n 1 - Adicionar item á lista \n 2 - Editar item da lista \n 3 - Excluir item da lista \n 4 - Visualizar itens da lista \n 5 - Limpar itens da lista \n 6 - Recuperar itens da lista  \n 7 - Fechar Sistema\n\n");
         boolean opcaoEscolhida = true;
         do {
             switch (opcao) {
@@ -103,16 +103,70 @@ public class ListaDeCompras {
             }
             JOptionPane.showMessageDialog(null, resultado);
             paginaInicial();
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "ERRO ! Não há produtos cadastrados");
             paginaInicial();
         }
     }
 
     private void editarItem() {
+        boolean tudoOk = false;
+        do {
+            if (!lista.isEmpty()) {
+                String opcao= JOptionPane.showInputDialog(null, "Digite o que deseja editar: ");
+                switch (opcao){
+                    case "1":
+                        String nomeProduto= JOptionPane.showInputDialog(null, "Digite o nome que deseja editar: ");
+                        for (int i = 0; i < lista.size(); i++) {
+                            if (lista.get(i).equalsIgnoreCase(nomeProduto)) {
+                                String novoProduto = JOptionPane.showInputDialog(null,"Digite o novo nome do produto");
+                                lista.set(i,novoProduto);
+                                listaBackup.add(String.valueOf(i));
+                                tudoOk = true;
+                                JOptionPane.showMessageDialog(null, "Produto editado com sucesso!");
+                                break;
+                            }
+                        }
+                        paginaInicial();
+                        break;
+                    case "2":
+                        nomeProduto= JOptionPane.showInputDialog(null, "Digite o nome que deseja editar: ");
+                        for (int i = 0; i < lista.size(); i++) {
+                            if (lista.get(i).equalsIgnoreCase(nomeProduto)) {
+                                String novoProduto = JOptionPane.showInputDialog(null,"Digite o nova quantidade do produto");
+                                int novoProd = Integer.parseInt(novoProduto);
+                                lista.set(i,String.valueOf(novoProd));
+                                listaBackup.add(String.valueOf(i));
+                                tudoOk = true;
+                                JOptionPane.showMessageDialog(null, "Produto editado com sucesso!");
+                                break;
+                            }
+                        }
+                        paginaInicial();
+                        break;
+                    case "3":
+                        nomeProduto= JOptionPane.showInputDialog(null, "Digite o nome que deseja editar: ");
+                        for (int i = 0; i < lista.size(); i++) {
+                            if (lista.get(i).equalsIgnoreCase(nomeProduto)) {
+                                String novoProduto = JOptionPane.showInputDialog(null,"Digite o novo valor do produto");
+                                double novoProd = Double.parseDouble(novoProduto);
+                                lista.set(i,String.valueOf(novoProd));
+                                listaBackup.add(String.valueOf(i));
+                                tudoOk = true;
+                                JOptionPane.showMessageDialog(null, "Produto editado com sucesso!");
+                                break;
+                            }
+                        }
+                        paginaInicial();
+                        break;
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "ERRO ! Não há produtos cadastrados");
+                paginaInicial();
+            }
+        } while (!tudoOk);
 
     }
-
     private void limparLista() {
 
     }
