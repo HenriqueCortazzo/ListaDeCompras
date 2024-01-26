@@ -8,7 +8,6 @@ public class ListaDeCompras {
     private final ArrayList<Integer> quant = new ArrayList<>();
     private final ArrayList<Double> prod = new ArrayList<>();
     private final ArrayList<Double> vTotal = new ArrayList<>();
-    private ArrayList<String> listaBackup = new ArrayList<>();
 
     public ListaDeCompras() {
         paginaInicial();
@@ -81,7 +80,6 @@ public class ListaDeCompras {
                 for (int i = 0; i < lista.size(); i++) {
                     if (lista.get(i).equalsIgnoreCase(nomeProduto)) {
                         lista.remove(i);
-                        listaBackup.add(String.valueOf(i));
                         tudoOk = true;
                         JOptionPane.showMessageDialog(null, "Produto excluído com sucesso!");
                         break;
@@ -110,10 +108,7 @@ public class ListaDeCompras {
     }
 
     private void editarItem() {
-        boolean tudoOk = false;
-        do {
             if (!lista.isEmpty()) {
-                String opcaowhile = "";
                 String opcao = JOptionPane.showInputDialog(null, "Digite o valor referente ao que deseja editar: \n\n 1 - Nome do Produto \n 2 - Quantidade \n 3 - Valor");
                 do {
                     switch (opcao) {
@@ -123,8 +118,6 @@ public class ListaDeCompras {
                                 if (lista.get(i).equalsIgnoreCase(nomeProduto)) {
                                     String novoProduto = JOptionPane.showInputDialog(null, "Digite o novo nome do produto");
                                     lista.set(i, novoProduto);
-                                    listaBackup.add(String.valueOf(i));
-                                    tudoOk = true;
                                     JOptionPane.showMessageDialog(null, "Produto editado com sucesso!");
                                     break;
                                 }
@@ -139,8 +132,6 @@ public class ListaDeCompras {
                                     int novoProd = Integer.parseInt(novoProduto);
                                     quant.set(i,novoProd);
                                     vTotal.set(i,quant.get(i)*prod.get(i));
-                                    listaBackup.add(String.valueOf(i));
-                                    tudoOk = true;
                                     JOptionPane.showMessageDialog(null, "Produto editado com sucesso!");
                                     break;
                                 }
@@ -155,8 +146,6 @@ public class ListaDeCompras {
                                     double novoProd = Double.parseDouble(novoProduto);
                                     prod.set(i,novoProd);
                                     vTotal.set(i,quant.get(i)*prod.get(i));
-                                    listaBackup.add(String.valueOf(i));
-                                    tudoOk = true;
                                     JOptionPane.showMessageDialog(null, "Produto editado com sucesso!");
                                     break;
                                 }
@@ -164,17 +153,15 @@ public class ListaDeCompras {
                             paginaInicial();
                             break;
                         default:
-                             opcaowhile = JOptionPane.showInputDialog(null,"Digite uma opção válida: ");
-                            break;
+                             opcao = JOptionPane.showInputDialog(null, "Digite o valor referente ao que deseja editar: \n\n 1 - Nome do Produto \n 2 - Quantidade \n 3 - Valor");
+                             break;
                     }
-                } while (!opcaowhile.equalsIgnoreCase("1") && !opcaowhile.equalsIgnoreCase("2") && !opcaowhile.equalsIgnoreCase("3"));
+                } while (!opcao.equalsIgnoreCase("0"));
 
             } else {
                 JOptionPane.showMessageDialog(null, "ERRO ! Não há produtos cadastrados");
                 paginaInicial();
             }
-        } while (!tudoOk);
-
     }
 
     private void limparLista() {
