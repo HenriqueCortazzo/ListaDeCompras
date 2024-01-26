@@ -56,18 +56,18 @@ public class ListaDeCompras {
             String nomeProduto = JOptionPane.showInputDialog(null, "Digite o nome do produto: ");
             String qtdItem = JOptionPane.showInputDialog(null, "Quantidade: ");
             String valorProduto = JOptionPane.showInputDialog(null, "Valor: ");
-            valorProd = Double.parseDouble(valorProduto);
-            qtd = Integer.parseInt(qtdItem);
-            double valorResultante = qtd * valorProd;
-            if (!nomeProduto.equalsIgnoreCase("null") && !qtdItem.equalsIgnoreCase("null") && !valorProduto.equalsIgnoreCase("null")) {
+            double valorResultante = 0;
+            if (!nomeProduto.isEmpty() && !qtdItem.isEmpty() && !valorProduto.isEmpty()) {
+                valorProd = Double.parseDouble(valorProduto);
+                qtd = Integer.parseInt(qtdItem);
+                valorResultante = qtd * valorProd;
                 lista.add(nomeProduto);
                 quant.add(Integer.valueOf(qtdItem));
                 prod.add(Double.valueOf(valorProduto));
                 vTotal.add(valorResultante);
                 JOptionPane.showMessageDialog(null, "Produto listado com sucesso.");
                 tudoOk = true;
-            }
-
+            } else JOptionPane.showMessageDialog(null, "É necessário preencher todas as informações para prosseguir.");
         } while (!tudoOk);
         paginaInicial();
     }
@@ -108,60 +108,59 @@ public class ListaDeCompras {
     }
 
     private void editarItem() {
-            if (!lista.isEmpty()) {
-                String opcao = JOptionPane.showInputDialog(null, "Digite o valor referente ao que deseja editar: \n\n 1 - Nome do Produto \n 2 - Quantidade \n 3 - Valor");
-                do {
-                    switch (opcao) {
-                        case "1":
-                            String nomeProduto = JOptionPane.showInputDialog(null, "Digite o nome que deseja editar: ");
-                            for (int i = 0; i < lista.size(); i++) {
-                                if (lista.get(i).equalsIgnoreCase(nomeProduto)) {
-                                    String novoProduto = JOptionPane.showInputDialog(null, "Digite o novo nome do produto");
-                                    lista.set(i, novoProduto);
-                                    JOptionPane.showMessageDialog(null, "Produto editado com sucesso!");
-                                    break;
-                                }
+        if (!lista.isEmpty()) {
+            String opcao = JOptionPane.showInputDialog(null, "Digite o valor referente ao que deseja editar: \n\n 1 - Nome do Produto \n 2 - Quantidade \n 3 - Valor");
+            do {
+                switch (opcao) {
+                    case "1":
+                        String nomeProduto = JOptionPane.showInputDialog(null, "Digite o nome que deseja editar: ");
+                        for (int i = 0; i < lista.size(); i++) {
+                            if (lista.get(i).equalsIgnoreCase(nomeProduto)) {
+                                String novoProduto = JOptionPane.showInputDialog(null, "Digite o novo nome do produto");
+                                lista.set(i, novoProduto);
+                                JOptionPane.showMessageDialog(null, "Produto editado com sucesso!");
+                                break;
                             }
-                            paginaInicial();
-                            break;
-                        case "2":
-                            nomeProduto = JOptionPane.showInputDialog(null, "Digite o nome que deseja editar: ");
-                            for (int i = 0; i < lista.size(); i++) {
-                                if (lista.get(i).equalsIgnoreCase(nomeProduto)) {
-                                    String novoProduto = JOptionPane.showInputDialog(null, "Digite o nova quantidade do produto");
-                                    int novoProd = Integer.parseInt(novoProduto);
-                                    quant.set(i,novoProd);
-                                    vTotal.set(i,quant.get(i)*prod.get(i));
-                                    JOptionPane.showMessageDialog(null, "Produto editado com sucesso!");
-                                    break;
-                                }
+                        }
+                        paginaInicial();
+                        break;
+                    case "2":
+                        nomeProduto = JOptionPane.showInputDialog(null, "Digite o nome que deseja editar: ");
+                        for (int i = 0; i < lista.size(); i++) {
+                            if (lista.get(i).equalsIgnoreCase(nomeProduto)) {
+                                String novoProduto = JOptionPane.showInputDialog(null, "Digite o nova quantidade do produto");
+                                int novoProd = Integer.parseInt(novoProduto);
+                                quant.set(i, novoProd);
+                                vTotal.set(i, quant.get(i) * prod.get(i));
+                                JOptionPane.showMessageDialog(null, "Produto editado com sucesso!");
+                                break;
                             }
-                            paginaInicial();
-                            break;
-                        case "3":
-                            nomeProduto = JOptionPane.showInputDialog(null, "Digite o nome que deseja editar: ");
-                            for (int i = 0; i < lista.size(); i++) {
-                                if (lista.get(i).equalsIgnoreCase(nomeProduto)) {
-                                    String novoProduto = JOptionPane.showInputDialog(null, "Digite o novo valor do produto");
-                                    double novoProd = Double.parseDouble(novoProduto);
-                                    prod.set(i,novoProd);
-                                    vTotal.set(i,quant.get(i)*prod.get(i));
-                                    JOptionPane.showMessageDialog(null, "Produto editado com sucesso!");
-                                    break;
-                                }
+                        }
+                        paginaInicial();
+                        break;
+                    case "3":
+                        nomeProduto = JOptionPane.showInputDialog(null, "Digite o nome que deseja editar: ");
+                        for (int i = 0; i < lista.size(); i++) {
+                            if (lista.get(i).equalsIgnoreCase(nomeProduto)) {
+                                String novoProduto = JOptionPane.showInputDialog(null, "Digite o novo valor do produto");
+                                double novoProd = Double.parseDouble(novoProduto);
+                                prod.set(i, novoProd);
+                                vTotal.set(i, quant.get(i) * prod.get(i));
+                                JOptionPane.showMessageDialog(null, "Produto editado com sucesso!");
+                                break;
                             }
-                            paginaInicial();
-                            break;
-                        default:
-                             opcao = JOptionPane.showInputDialog(null, "Digite o valor referente ao que deseja editar: \n\n 1 - Nome do Produto \n 2 - Quantidade \n 3 - Valor");
-                             break;
-                    }
-                } while (!opcao.equalsIgnoreCase("0"));
-
-            } else {
-                JOptionPane.showMessageDialog(null, "ERRO ! Não há produtos cadastrados");
-                paginaInicial();
-            }
+                        }
+                        paginaInicial();
+                        break;
+                    default:
+                        opcao = JOptionPane.showInputDialog(null, "Digite o valor referente ao que deseja editar: \n\n 1 - Nome do Produto \n 2 - Quantidade \n 3 - Valor");
+                        break;
+                }
+            } while (!opcao.equalsIgnoreCase("0"));
+        } else {
+            JOptionPane.showMessageDialog(null, "ERRO ! Não há produtos cadastrados");
+            paginaInicial();
+        }
     }
 
     private void limparLista() {
