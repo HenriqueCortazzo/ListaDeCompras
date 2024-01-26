@@ -137,7 +137,8 @@ public class ListaDeCompras {
                                 if (lista.get(i).equalsIgnoreCase(nomeProduto)) {
                                     String novoProduto = JOptionPane.showInputDialog(null, "Digite o nova quantidade do produto");
                                     int novoProd = Integer.parseInt(novoProduto);
-                                    lista.set(i, String.valueOf(novoProd));
+                                    quant.set(i,novoProd);
+                                    vTotal.set(i,quant.get(i)*prod.get(i));
                                     listaBackup.add(String.valueOf(i));
                                     tudoOk = true;
                                     JOptionPane.showMessageDialog(null, "Produto editado com sucesso!");
@@ -152,7 +153,8 @@ public class ListaDeCompras {
                                 if (lista.get(i).equalsIgnoreCase(nomeProduto)) {
                                     String novoProduto = JOptionPane.showInputDialog(null, "Digite o novo valor do produto");
                                     double novoProd = Double.parseDouble(novoProduto);
-                                    lista.set(i, String.valueOf(novoProd));
+                                    prod.set(i,novoProd);
+                                    vTotal.set(i,quant.get(i)*prod.get(i));
                                     listaBackup.add(String.valueOf(i));
                                     tudoOk = true;
                                     JOptionPane.showMessageDialog(null, "Produto editado com sucesso!");
