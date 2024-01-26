@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 public class ListaDeCompras {
-    private ArrayList<String> lista = new ArrayList<>();
+    private final ArrayList<String> lista = new ArrayList<>();
     private final ArrayList<Integer> quant = new ArrayList<>();
     private final ArrayList<Double> prod = new ArrayList<>();
     private final ArrayList<Double> vTotal = new ArrayList<>();
@@ -192,7 +192,10 @@ public class ListaDeCompras {
 
     private void recuperarLista() {
         if (!listaBackup.isEmpty()) {
-            lista=listaBackup;
+            lista.addAll(listaBackup);
+            quant.addAll(quantBackup);
+            prod.addAll(prodBackup);
+            vTotal.addAll(prodBackup);
             JOptionPane.showMessageDialog(null,"Todos os itens foram restuarados.");
         } else JOptionPane.showMessageDialog(null, "ERRO ! Não há produtos cadastrados");
         paginaInicial();
