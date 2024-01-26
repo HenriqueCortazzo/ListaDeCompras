@@ -4,10 +4,14 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 public class ListaDeCompras {
-    private final ArrayList<String> lista = new ArrayList<>();
+    private ArrayList<String> lista = new ArrayList<>();
     private final ArrayList<Integer> quant = new ArrayList<>();
     private final ArrayList<Double> prod = new ArrayList<>();
     private final ArrayList<Double> vTotal = new ArrayList<>();
+    private final ArrayList<String> listaBackup = new ArrayList<>();
+    private final ArrayList<Integer> quantBackup = new ArrayList<>();
+    private final ArrayList<Double> prodBackup = new ArrayList<>();
+    private final ArrayList<Double> vTotalBackup = new ArrayList<>();
 
     public ListaDeCompras() {
         paginaInicial();
@@ -71,6 +75,10 @@ public class ListaDeCompras {
                 quant.add(Integer.valueOf(qtdItem));
                 prod.add(Double.valueOf(valorProduto));
                 vTotal.add(valorResultante);
+                listaBackup.add(nomeProduto);
+                quantBackup.add(Integer.valueOf(qtdItem));
+                prodBackup.add(Double.valueOf(valorProduto));
+                vTotalBackup.add(valorResultante);
                 JOptionPane.showMessageDialog(null, "Produto listado com sucesso.");
                 tudoOk = true;
             } else JOptionPane.showMessageDialog(null, "É necessário preencher todas as informações para prosseguir.");
@@ -124,6 +132,7 @@ public class ListaDeCompras {
                             if (lista.get(i).equalsIgnoreCase(nomeProduto)) {
                                 String novoProduto = JOptionPane.showInputDialog(null, "Digite o novo nome do produto");
                                 lista.set(i, novoProduto);
+                                listaBackup.set(i,novoProduto);
                                 JOptionPane.showMessageDialog(null, "Produto editado com sucesso!");
                                 break;
                             }
@@ -138,6 +147,8 @@ public class ListaDeCompras {
                                 int novoProd = Integer.parseInt(novoProduto);
                                 quant.set(i, novoProd);
                                 vTotal.set(i, quant.get(i) * prod.get(i));
+                                quantBackup.set(i, novoProd);
+                                vTotalBackup.set(i, quantBackup.get(i) * prodBackup.get(i));
                                 JOptionPane.showMessageDialog(null, "Produto editado com sucesso!");
                                 break;
                             }
@@ -152,6 +163,8 @@ public class ListaDeCompras {
                                 double novoProd = Double.parseDouble(novoProduto);
                                 prod.set(i, novoProd);
                                 vTotal.set(i, quant.get(i) * prod.get(i));
+                                prodBackup.set(i, novoProd);
+                                vTotalBackup.set(i, quantBackup.get(i) * prodBackup.get(i));
                                 JOptionPane.showMessageDialog(null, "Produto editado com sucesso!");
                                 break;
                             }
@@ -178,6 +191,10 @@ public class ListaDeCompras {
     }
 
     private void recuperarLista() {
-
+        if (!listaBackup.isEmpty()) {
+            lista=listaBackup;
+            JOptionPane.showMessageDialog(null,"Todos os itens foram restuarados.");
+        } else JOptionPane.showMessageDialog(null, "ERRO ! Não há produtos cadastrados");
+        paginaInicial();
     }
 }
