@@ -170,7 +170,8 @@ public class ListaDeCompras {
     }
 
     private void limparLista() {
-
+        lista.clear();
+        JOptionPane.showMessageDialog(null, "Todos os itens foram excluídos com sucesso");
     }
 
     private void recuperarLista() {
