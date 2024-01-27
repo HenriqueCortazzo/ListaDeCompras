@@ -12,11 +12,9 @@ public class ListaDeCompras {
     private final ArrayList<Integer> quantBackup = new ArrayList<>();
     private final ArrayList<Double> prodBackup = new ArrayList<>();
     private final ArrayList<Double> vTotalBackup = new ArrayList<>();
-
     public ListaDeCompras() {
         paginaInicial();
     }
-
     private void paginaInicial() {
         String opcao = JOptionPane.showInputDialog(null, "LISTA DE COMPRAS\n\n 1 - Adicionar item á lista \n 2 - Editar item da lista \n 3 - Excluir item da lista \n 4 - Visualizar itens da lista \n 5 - Limpar itens da lista \n 6 - Recuperar itens da lista  \n 7 - Fechar Sistema\n\n");
         boolean opcaoEscolhida = true;
@@ -51,7 +49,6 @@ public class ListaDeCompras {
             }
         } while (!opcaoEscolhida);
     }
-
     private void adicionarItem() {
         boolean tudoOk = false;
         do {
@@ -90,7 +87,6 @@ public class ListaDeCompras {
         } while (!tudoOk);
         paginaInicial();
     }
-
     private void excluirItem() {
         boolean tudoOk = false;
         do {
@@ -111,7 +107,6 @@ public class ListaDeCompras {
             }
         } while (!tudoOk);
     }
-
     private void visualizarlista() {
         if (!lista.isEmpty()) {
             String resultado = "PRODUTO   QNTD   VALOR UN   VALOR TOTAL\n";
@@ -125,7 +120,6 @@ public class ListaDeCompras {
             paginaInicial();
         }
     }
-
     private void editarItem() {
         if (!lista.isEmpty()) {
             String opcao = JOptionPane.showInputDialog(null, "Digite o valor referente ao que deseja editar: \n\n 1 - Nome do Produto \n 2 - Quantidade \n 3 - Valor");
@@ -154,13 +148,18 @@ public class ListaDeCompras {
                         for (int i = 0; i < lista.size(); i++) {
                             if (lista.get(i).equalsIgnoreCase(nomeProduto)) {
                                 String novoProduto = JOptionPane.showInputDialog(null, "Digite o nova quantidade do produto");
-                                int novoProd = Integer.parseInt(novoProduto);
-                                quant.set(i, novoProd);
-                                vTotal.set(i, quant.get(i) * prod.get(i));
-                                quantBackup.set(i, novoProd);
-                                vTotalBackup.set(i, quantBackup.get(i) * prodBackup.get(i));
-                                JOptionPane.showMessageDialog(null, "Produto editado com sucesso!");
-                                break;
+                                if (novoProduto.trim().isEmpty()) {
+                                    JOptionPane.showMessageDialog(null, "Nova quantidade é inválido!");
+                                    editarItem();
+                                } else {
+                                    int novoProd = Integer.parseInt(novoProduto);
+                                    quant.set(i, novoProd);
+                                    vTotal.set(i, quant.get(i) * prod.get(i));
+                                    quantBackup.set(i, novoProd);
+                                    vTotalBackup.set(i, quantBackup.get(i) * prodBackup.get(i));
+                                    JOptionPane.showMessageDialog(null, "Produto editado com sucesso!");
+                                    break;
+                                }
                             }
                         }
                         paginaInicial();
@@ -170,13 +169,18 @@ public class ListaDeCompras {
                         for (int i = 0; i < lista.size(); i++) {
                             if (lista.get(i).equalsIgnoreCase(nomeProduto)) {
                                 String novoProduto = JOptionPane.showInputDialog(null, "Digite o novo valor do produto");
-                                double novoProd = Double.parseDouble(novoProduto);
-                                prod.set(i, novoProd);
-                                vTotal.set(i, quant.get(i) * prod.get(i));
-                                prodBackup.set(i, novoProd);
-                                vTotalBackup.set(i, quantBackup.get(i) * prodBackup.get(i));
-                                JOptionPane.showMessageDialog(null, "Produto editado com sucesso!");
-                                break;
+                                if (novoProduto.trim().isEmpty()) {
+                                    JOptionPane.showMessageDialog(null, "Novo valor é inválido!");
+                                    editarItem();
+                                } else {
+                                    double novoProd = Double.parseDouble(novoProduto);
+                                    prod.set(i, novoProd);
+                                    vTotal.set(i, quant.get(i) * prod.get(i));
+                                    prodBackup.set(i, novoProd);
+                                    vTotalBackup.set(i, quantBackup.get(i) * prodBackup.get(i));
+                                    JOptionPane.showMessageDialog(null, "Produto editado com sucesso!");
+                                    break;
+                                }
                             }
                         }
                         paginaInicial();
@@ -191,7 +195,6 @@ public class ListaDeCompras {
             paginaInicial();
         }
     }
-
     private void limparLista() {
         if (!lista.isEmpty()) {
             lista.clear();
@@ -202,7 +205,6 @@ public class ListaDeCompras {
         } else JOptionPane.showMessageDialog(null, "ERRO ! Não há produtos cadastrados");
         paginaInicial();
     }
-
     private void recuperarLista() {
         if (lista.isEmpty()) {
             if (!listaBackup.isEmpty()) {
