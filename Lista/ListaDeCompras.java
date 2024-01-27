@@ -194,13 +194,16 @@ public class ListaDeCompras {
     }
 
     private void recuperarLista() {
-        if (!listaBackup.isEmpty()) {
-            lista.addAll(listaBackup);
-            quant.addAll(quantBackup);
-            prod.addAll(prodBackup);
-            vTotal.addAll(vTotalBackup);
-            JOptionPane.showMessageDialog(null, "Todos os itens foram restuarados.");
-        } else JOptionPane.showMessageDialog(null, "ERRO ! Não há produtos cadastrados");
+        if (lista.isEmpty()) {
+            if (!listaBackup.isEmpty()) {
+                lista.addAll(listaBackup);
+                quant.addAll(quantBackup);
+                prod.addAll(prodBackup);
+                vTotal.addAll(vTotalBackup);
+                JOptionPane.showMessageDialog(null, "Todos os itens foram restuarados.");
+            } else JOptionPane.showMessageDialog(null, "ERRO ! Não há produtos cadastrados");
+            paginaInicial();
+        } else JOptionPane.showMessageDialog(null, "Não é foi possível limpar a lista, a mesma contém itens.");
         paginaInicial();
     }
 }
