@@ -58,8 +58,8 @@ public class ListaDeCompras {
             double valorProd;
             int qtd;
             String nomeProduto = JOptionPane.showInputDialog(null, "Digite o nome do produto: ");
-            for (String s : lista) {
-                if (nomeProduto.equalsIgnoreCase(s)) {
+            for (int i = 0; i < listaBackup.size(); i++) {
+                if (nomeProduto.equalsIgnoreCase(listaBackup.get(i)) || nomeProduto.equalsIgnoreCase(lista.get(i))){
                     JOptionPane.showMessageDialog(null, "Esse produto já foi cadastrado.");
                     paginaInicial();
                 }
@@ -203,7 +203,7 @@ public class ListaDeCompras {
                 JOptionPane.showMessageDialog(null, "Todos os itens foram restuarados.");
             } else JOptionPane.showMessageDialog(null, "ERRO ! Não há produtos cadastrados");
             paginaInicial();
-        } else JOptionPane.showMessageDialog(null, "Não é foi possível limpar a lista, a mesma contém itens.");
+        } else JOptionPane.showMessageDialog(null, "Não é foi possível recuperar a lista, a mesma contém itens.");
         paginaInicial();
     }
 }
