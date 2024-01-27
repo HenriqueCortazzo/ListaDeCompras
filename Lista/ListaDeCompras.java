@@ -60,11 +60,11 @@ public class ListaDeCompras {
             String nomeProduto = JOptionPane.showInputDialog(null, "Digite o nome do produto: ");
             for (int i = 0; i < listaBackup.size(); i++) {
                 if (!lista.isEmpty() && lista.size() == listaBackup.size()) {
-                    if ( nomeProduto.equalsIgnoreCase(lista.get(i))) {
+                    if (nomeProduto.equalsIgnoreCase(lista.get(i))) {
                         JOptionPane.showMessageDialog(null, "Esse produto já foi cadastrado.");
                         paginaInicial();
                     }
-                }else if (nomeProduto.equalsIgnoreCase(listaBackup.get(i))){
+                } else if (nomeProduto.equalsIgnoreCase(listaBackup.get(i))) {
                     JOptionPane.showMessageDialog(null, "Esse produto já foi cadastrado.");
                     paginaInicial();
                 }
@@ -135,8 +135,13 @@ public class ListaDeCompras {
                         String nomeProduto = JOptionPane.showInputDialog(null, "Digite o nome que deseja editar: ");
                         for (int i = 0; i < lista.size(); i++) {
                             if (lista.get(i).equalsIgnoreCase(nomeProduto)) {
-                                String novoProduto = JOptionPane.showInputDialog(null, "Digite o novo nome do produto");
-                                lista.set(i, novoProduto);
+                                String novoProduto;
+                                novoProduto = JOptionPane.showInputDialog(null, "Digite o novo nome do produto");
+                                if (novoProduto.trim().isEmpty()) {
+                                    JOptionPane.showMessageDialog(null, "Novo nome é inválido!");
+                                    editarItem();
+                                } else
+                                    lista.set(i, novoProduto);
                                 listaBackup.set(i, novoProduto);
                                 JOptionPane.showMessageDialog(null, "Produto editado com sucesso!");
                                 break;
