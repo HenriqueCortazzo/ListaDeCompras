@@ -59,7 +59,12 @@ public class ListaDeCompras {
             int qtd;
             String nomeProduto = JOptionPane.showInputDialog(null, "Digite o nome do produto: ");
             for (int i = 0; i < listaBackup.size(); i++) {
-                if (nomeProduto.equalsIgnoreCase(listaBackup.get(i)) || nomeProduto.equalsIgnoreCase(lista.get(i))){
+                if (!lista.isEmpty() && lista.size() == listaBackup.size()) {
+                    if ( nomeProduto.equalsIgnoreCase(lista.get(i))) {
+                        JOptionPane.showMessageDialog(null, "Esse produto já foi cadastrado.");
+                        paginaInicial();
+                    }
+                }else if (nomeProduto.equalsIgnoreCase(listaBackup.get(i))){
                     JOptionPane.showMessageDialog(null, "Esse produto já foi cadastrado.");
                     paginaInicial();
                 }
